@@ -1,4 +1,4 @@
-# Code created and published by: Harsh Patel
+# Code solely created and published by: Harsh Patel
 
 class Node:
     def __init__(self, name, isFile=False):
@@ -80,19 +80,29 @@ def main():
             for key in result:
                 print(key)
         elif command.startswith("mkdir"):
-            dirname = command.split(" ")[1]
-            fs.mkdir(dirname)
+            dirnameList = command.split(" ")
+            dirnameList.remove("mkdir")
+            if dirnameList == []:
+                print("Must have only one argument...")
+            else:
+                fs.mkdir(dirnameList[0])
         elif command.startswith("cd"):
-            path = command.split(" ")[1]
-            fs.cd(path)
+            pathList = command.split(" ")
+            pathList.remove("cd")
+            fs.cd(pathList[0])
         elif command.startswith("touch"):
             filenames = command.split(" ")
             filenames.remove("touch")
-            for eachFile in filenames:
-                fs.touch(eachFile)
+            if filenames == []:
+                print("Atleast 1 argument needed...")
+            else:
+                for eachFile in filenames:
+                    fs.touch(eachFile)
+        else:
+            print("Invalid command. Try again!\n")
 
 if __name__ == "__main__":
     main()
 
 
-# Code created and published by: Harsh Patel
+# Code solely created and published by: Harsh Patel
